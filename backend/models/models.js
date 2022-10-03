@@ -87,9 +87,64 @@ let eventDataSchema = new Schema({
     collection: 'eventData'
 });
 
+// health collection information 
+let healthDataSchema = new Schema({
+    _id: {
+        type: String,
+        default: uuid.v1
+    },
+    serviceID: {
+        type: Number,
+        required: true
+    },
+    activityProfile: [{
+        activityID: {
+            type: Number,
+            required: true
+        },
+        activityName: {
+            type: String,
+            required: true
+        },
+        activityDesc: {
+            type: String
+        }
+    }]
+},
+    {
+        collection: 'healthData'
+    });
+//contact collection information
+    let contactDataSchema = new Schema({
+        _id: {
+            type: String,
+            default: uuid.v1
+        },
+        serviceID: {
+            type: Number,
+            required: true
+        },
+        activityProfile: [{
+            activityID: {
+                type: Number,
+                required: true
+            },
+            activityName: {
+                type: String,
+                required: true
+            },
+            activityDesc: {
+                type: String
+            }
+        }]
+    },
+        {
+            collection: 'contactData'
+        });
 // create models from mongoose schemas
 const primarydata = mongoose.model('primaryData', primaryDataSchema);
 const eventdata = mongoose.model('eventData', eventDataSchema);
-
+const healthdata = mongoose.model('healthData', healthDataSchema);
+const contactdata = mongoose.model('contactData', contactDataSchema);
 // package the models in an object to export 
 module.exports = { primarydata, eventdata }
