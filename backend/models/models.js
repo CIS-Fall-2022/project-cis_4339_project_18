@@ -108,8 +108,8 @@ let healthDataSchema = new Schema({
         haveInsurance: {
             type: Boolean,
             required: true
-        }
-        gettingVaccine: {
+        },
+        getingVaccine: {
             type: Boolean,
             required: true
         },
@@ -132,7 +132,7 @@ let healthDataSchema = new Schema({
         lastUpdate: {
             type: Date,
             required: true
-
+        },
 }, {
     collection: 'healthData'
 });
