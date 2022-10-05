@@ -136,6 +136,7 @@ let healthDataSchema = new Schema({
 }, {
     collection: 'healthData'
 });
+
 //contact collection information
     let contactDataSchema = new Schema({
         _id: {
@@ -197,10 +198,170 @@ let healthDataSchema = new Schema({
 }, {
     collection: 'contactData'
 });
+
+// Client Collection
+    let clientSchema = new Schema({
+        _id: {
+            type: String,
+            default: uuid.v1
+        },
+        clientID: {
+            type: Number,
+            required: true
+        },
+        intakeFormID: {
+            type: Number,
+            required: true
+        },
+        firstName: {
+            type: String,
+            required: true
+        },
+        lastName: {
+            type: String,
+            required: true
+        },
+        age: {
+            type: Number,
+            required: true
+        },
+        birthday: {
+            type: String,
+            required: true
+        },
+        gender: {
+            type: String,
+            required: true
+        }
+    },
+        {
+            collection: 'clients'
+    });
+
+// Intake Form Collection
+    let intakeSchema = new Schema({
+        _id: {
+            type: String,
+            default: uuid.v1
+        },
+        formID: {
+            type: Number,
+            required: true
+        },
+        clientID: {
+            type: Number,
+            required: true
+        },
+        startDate: {
+            type: String,
+            required: true
+        },
+        endDate: {
+            type: String
+        },
+        isPrevious: {
+            type: Boolean
+        }
+    },
+        {
+            collection: 'intakes'
+    });
+
+// Services Collection
+    let serviceSchema = new Schema({
+        _id: {
+            type: String,
+            default: uuid.v1
+        },
+        serviceID: {
+            type: Number,
+            required: true
+        },
+        clientID: {
+            type: Number,
+            required: true
+        },
+        serviceName: {
+            type: String,
+            required: true
+        },
+        serviceDesc: {
+            type: String
+        },
+        organization: {
+            type: String,
+            required: true
+        }
+    },
+        {
+            collection: 'services'
+    });
+
+// Events Collection
+    let eventSchema = new Schema({
+        _id: {
+            type: String,
+            default: uuid.v1
+        },
+        eventID: {
+            type: Number,
+            required: true
+        },
+        serviceID: {
+            type: Number,
+            required: true
+        },
+        eventName: {
+            type: String,
+            required: true
+        },
+        endDate: {
+            type: String
+        },
+        eventDesc: {
+            type: String
+        }
+    },
+        {
+            collection: 'events'
+        });
+
+// Logs Collection
+    let logSchema = new Schema({
+        _id: {
+            type: String,
+            default: uuid.v1
+        },
+        clientID: {
+            type: Number,
+            required: true
+        },
+        serviceID: {
+            type: Number,
+            required: true
+        },
+        accessDate: {
+            type: Date,
+            required: true
+        },
+        accessTime:{
+            type: Time
+        }  
+    },
+        {
+            collection: 'logs'
+        });
+
 // create models from mongoose schemas
 const primarydata = mongoose.model('primaryData', primaryDataSchema);
 const eventdata = mongoose.model('eventData', eventDataSchema);
 const healthdata = mongoose.model('healthData', healthDataSchema);
 const contactdata = mongoose.model('contactData', contactDataSchema);
+const clients = mongoose.model('client', clientSchema);
+const intakes = mongoose.model('intake', intakeSchema);
+const services = mongoose.model('service', serviceSchema);
+const events = mongoose.model('events', eventSchema);
+const logs = mongoose.model('logs', logSchema);
+
 // package the models in an object to export 
-module.exports = { primarydata, eventdata }
+module.exports = { primarydata, eventdata, healthdata, contactdata, clients, intakes, services, events, logs}
