@@ -352,6 +352,48 @@ let healthDataSchema = new Schema({
             collection: 'logs'
         });
 
+// Organizations Collection
+    let orgDataSchema = new Schema({
+        _id: { 
+            type: String, 
+            default: uuid.v1 
+        },
+        orgID: {
+            type: Number,
+            required: true
+        },
+        org_desc: {
+            type: String
+        },
+        org_contact: {
+            phoneNumber: [{
+                type: String
+            }],
+            email: [{
+                type: String
+            }] 
+        },
+        org_address: {
+            line1: {
+                type: String
+            },
+            line2: {
+                type: String
+            },
+            city: {
+                type: String
+            },
+            county: {
+                type: String
+            },
+            zip: {
+                type: Number
+            }
+        }
+    }, {
+        collection: 'orgData'
+    });
+
 // create models from mongoose schemas
 const primarydata = mongoose.model('primaryData', primaryDataSchema);
 const eventdata = mongoose.model('eventData', eventDataSchema);
@@ -362,6 +404,7 @@ const intakes = mongoose.model('intake', intakeSchema);
 const services = mongoose.model('service', serviceSchema);
 const events = mongoose.model('events', eventSchema);
 const logs = mongoose.model('logs', logSchema);
+const orgs = mongoose.model('orgData', orgDataSchema);
 
 // package the models in an object to export 
-module.exports = { primarydata, eventdata, healthdata, contactdata, clients, intakes, services, events, logs}
+module.exports = { primarydata, eventdata, healthdata, contactdata, clients, intakes, services, events, logs, orgs}
