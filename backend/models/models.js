@@ -362,6 +362,10 @@ let healthDataSchema = new Schema({
             type: Number,
             required: true
         },
+        eventID: {
+            type: Number,
+            required: true
+        },
         org_desc: {
             type: String
         },
