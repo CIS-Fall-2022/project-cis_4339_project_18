@@ -138,4 +138,22 @@ router.delete("/deleteEvent/:id", (req, res, next) => {
     );
 });
 
+//GET clients attending events in the past 2 months
+//Cite for date agrergation: https://stackoverflow.com/questions/58232356/mongodb-subtract-months-from-date-with-value-from-database
+router.get("/events/", (req, res, next) => { 
+    eventdata.find( 
+        {date: {
+            $gte:new Date(new Date().setMonth(new Date().getMonth() - 2)),
+            $lt:new Date()}}, 
+        {"attendees":1},
+        (error, data) => { 
+            if (error) {
+                return next(error);
+            } else {
+                res.json(data);
+            }
+        }
+    );
+});
+
 module.exports = router;
