@@ -344,8 +344,9 @@ let healthDataSchema = new Schema({
             type: Date,
             required: true
         },
-        accessTime:{
-            type: Time
+      accessTime:{
+         type: String,
+         required: true
         }  
     },
         {
