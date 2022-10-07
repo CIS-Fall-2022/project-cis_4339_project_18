@@ -359,9 +359,8 @@ let healthDataSchema = new Schema({
             type: String, 
             default: uuid.v1 
         },
-        orgID: {
-            type: Number,
-            required: true
+        orgName: {
+            type: String
         },
         eventID: {
             type: Number,
