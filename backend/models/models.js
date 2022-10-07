@@ -40,7 +40,10 @@ let primaryDataSchema = new Schema({
         zip: {
             type: String,
         }
-    }
+    },
+    orgName: {
+        type: String,
+    },
 }, {
     collection: 'primaryData',
     timestamps: true
@@ -82,7 +85,10 @@ let eventDataSchema = new Schema({
     },
     attendees: [{
         type: String
-    }]
+    }],
+    orgName: {
+        type: String,
+    },
 }, {
     collection: 'eventData'
 });
@@ -359,9 +365,8 @@ let healthDataSchema = new Schema({
             type: String, 
             default: uuid.v1 
         },
-        orgID: {
-            type: Number,
-            required: true
+        orgName: {
+            type: String
         },
         org_desc: {
             type: String

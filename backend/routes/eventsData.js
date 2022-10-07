@@ -43,6 +43,7 @@ router.get("/search/", (req, res, next) => {
         dbQuery, 
         (error, data) => { 
             if (error) {
+                res.json(data);
                 return next(error);
             } else {
                 res.json(data);
@@ -96,7 +97,7 @@ router.put("/:id", (req, res, next) => {
 
 //PUT add attendee to event
 router.put("/addAttendee/:id", (req, res, next) => {
-    //only add attendee if not yet signed uo
+    //only add attendee if not yet signed up
     eventdata.find( 
         { _id: req.params.id, attendees: req.body.attendee }, 
         (error, data) => { 
@@ -109,7 +110,6 @@ router.put("/addAttendee/:id", (req, res, next) => {
                         { $push: { attendees: req.body.attendee } },
                         (error, data) => {
                             if (error) {
-                                consol
                                 return next(error);
                             } else {
                                 res.json(data);
@@ -140,7 +140,7 @@ router.delete("/deleteEvent/:id", (req, res, next) => {
 
 //GET clients attending events in the past 2 months
 //Cite for date agrergation: https://stackoverflow.com/questions/58232356/mongodb-subtract-months-from-date-with-value-from-database
-router.get("/events/", (req, res, next) => { 
+router.get("/pastAttendees/", (req, res, next) => { 
     eventdata.find( 
         {date: {
             $gte:new Date(new Date().setMonth(new Date().getMonth() - 2)),
