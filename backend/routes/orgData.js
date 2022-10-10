@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 //importing data model schemas
-let { orgs } = require("../models/models"); 
+let { orgdata } = require("../models/models"); 
 
 //GET all entries
 router.get("/", (req, res, next) => { 
-    orgs.find( 
+    orgdata.find( 
         (error, data) => {
             if (error) {
                 return next(error);
@@ -19,7 +19,7 @@ router.get("/", (req, res, next) => {
 
 //GET single entry by ID
 router.get("/id/:id", (req, res, next) => { 
-    orgs.find({ _id: req.params.id }, (error, data) => {
+    orgdata.find({ _id: req.params.id }, (error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -31,7 +31,7 @@ router.get("/id/:id", (req, res, next) => {
 
 //POST
 router.post("/", (req, res, next) => { 
-    orgs.create( 
+    orgdata.create( 
         req.body, 
         (error, data) => { 
             if (error) {
@@ -45,7 +45,7 @@ router.post("/", (req, res, next) => {
 
 //PUT
 router.put("/:id", (req, res, next) => {
-    orgs.findOneAndUpdate(
+    orgdata.findOneAndUpdate(
         { _id: req.params.id },
         req.body,
         (error, data) => {
@@ -60,7 +60,7 @@ router.put("/:id", (req, res, next) => {
 
 //DELETE single entry by ID
 router.delete("/deleteorg/:id", (req, res, next) => {
-    orgs.deleteOne( 
+    orgdata.deleteOne( 
         { _id: req.params.id }, 
         (error, data) => {
             if (error) {
