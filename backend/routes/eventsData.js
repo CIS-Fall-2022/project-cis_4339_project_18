@@ -66,8 +66,6 @@ router.get("/client/:id", (req, res, next) => {
     );
 });
 
-
-
 //POST
 router.post("/", (req, res, next) => { 
     eventdata.create( 
@@ -125,12 +123,11 @@ router.put("/addAttendee/:id", (req, res, next) => {
     );
     
 });
- 
-//DELETE
-router.delete("/:id", (req, res, next) =>{
-    eventdata.findOneAndRemove(
-        {_id: req.params.id},
-        req.body,
+
+//DELETE single entry by ID
+router.delete("/deleteEvent/:id", (req, res, next) => {
+    eventdata.deleteOne( 
+        { _id: req.params.id }, 
         (error, data) => {
             if (error) {
                 return next(error);
