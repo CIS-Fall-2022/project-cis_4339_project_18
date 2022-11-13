@@ -149,7 +149,11 @@ router.get("/pastAttendees/", (req, res, next) => {
             $lt:new Date()},
             org_id: process.env.ORG,
         },
-        {attendees:{$size:"$attendees"}},
+        {
+            eventName:1,
+            date:1,
+            attendees:{$size:"$attendees"}
+        },
         (error, data) => { 
             if (error) {
                 return next(error);
