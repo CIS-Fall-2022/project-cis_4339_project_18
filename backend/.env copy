@@ -1,0 +1,3 @@
+MONGO_URL = mongodb+srv://admin:group18@cis4339.cjnkdxa.mongodb.net/project
+PORT = 3001
+ORG =  c2531510-62b9-11ed-be5b-bf06747dc832

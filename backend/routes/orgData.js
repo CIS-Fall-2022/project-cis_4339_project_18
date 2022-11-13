@@ -4,22 +4,9 @@ const router = express.Router();
 //importing data model schemas
 let { orgdata } = require("../models/models"); 
 
-//GET all entries
 router.get("/", (req, res, next) => { 
-    orgdata.find( 
+    orgdata.find(
         (error, data) => {
-            if (error) {
-                return next(error);
-            } else {
-                res.json(data);
-            }
-        }
-    ).sort({ 'updatedAt': -1 }).limit(10);
-});
-
-//GET single entry by ID
-router.get("/id/:id", (req, res, next) => { 
-    orgdata.find({ _id: req.params.id }, (error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -28,49 +15,16 @@ router.get("/id/:id", (req, res, next) => {
     })
 });
 
-
-//POST
-router.post("/", (req, res, next) => { 
-    orgdata.create( 
-        req.body, 
-        (error, data) => { 
-            if (error) {
-                return next(error);
-            } else {
-                res.json(data);
-            }
-        }
-    );
-});
-
-//PUT
-router.put("/:id", (req, res, next) => {
-    orgdata.findOneAndUpdate(
-        { _id: req.params.id },
-        req.body,
+router.get("/orgName/", (req, res, next) => { 
+    orgdata.findOne({org_id: process.env.ORG}, 
+        {orgName:1},
         (error, data) => {
-            if (error) {
-                return next(error);
-            } else {
-                res.json(data);
-            }
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
         }
-    );
+    })
 });
-
-//DELETE single entry by ID
-router.delete("/deleteorg/:id", (req, res, next) => {
-    orgdata.deleteOne( 
-        { _id: req.params.id }, 
-        (error, data) => {
-            if (error) {
-                return next(error);
-            } else {
-                res.json(data);
-            }
-        }
-    );
-});
-
 
 module.exports = router;
