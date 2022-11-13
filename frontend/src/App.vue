@@ -44,11 +44,9 @@
     <div class="grow w-4/5">
       <section
         class="justify-end items-center h-24 flex"
-        style="
-          background: linear-gradient(250deg, #C8102E 70%, #efecec 50.6%);
-        "
+        style="background: linear-gradient(250deg, #C8102E 70%, #efecec 50.6%);"
       >
-        <h1 class="mr-20 text-3xl text-white">Dataplatform</h1>
+        <h1 class="mr-20 text-3xl text-white">{{queryData.orgName}}</h1>
       </section>
       <div>
         <router-view></router-view>
@@ -57,12 +55,6 @@
   </main>
 </template>
 
-<script>
-export default {
-  name: "App",
-};
-</script>
-
 <style>
 #_container {
   background-color: #c8102e;
@@ -70,3 +62,20 @@ export default {
   padding: 18px;
 }
 </style>
+
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      queryData: []
+    }
+  },
+  mounted() {
+    let apiURL = import.meta.env.VITE_ROOT_API + `/orgdata/orgname/`;
+    axios.get(apiURL).then((resp) => {
+      this.queryData = resp.data;
+    });
+  },
+};
+</script>
