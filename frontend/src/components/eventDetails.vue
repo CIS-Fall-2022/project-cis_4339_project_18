@@ -204,10 +204,7 @@
             >Go back</button>
           </div>
         </div>
-
-        <hr class="mt-10 mb-10" />
-          <!-- form field -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
           <div class="flex justify-between mt-10 mr-20">
             <button
               @click="handleEventDelete"
@@ -216,6 +213,7 @@
             >Delete Event</button>
           </div>
         </div>
+        <hr class="mt-10 mb-10" />
 
         <!-- grid container -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
@@ -331,9 +329,9 @@ export default {
       });
     },
     handleEventDelete() {
-      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/eventdelete${this.id}`;
+      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/deleteevent/${this.id}`;
       axios.delete(apiURL, this.event).then(() => {
-        alert("Delete has been saved.");
+        alert("Event has been deleted.");
         this.$router.back().catch((error) => {
           console.log(error);
         });
