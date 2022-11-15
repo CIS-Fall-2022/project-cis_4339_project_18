@@ -204,7 +204,15 @@
             >Go back</button>
           </div>
         </div>
-
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
+          <div class="flex justify-between mt-10 mr-20">
+            <button
+              @click="handleEventDelete"
+              type="submit"
+              class="bg-red-700 text-white rounded"
+            >Delete Event</button>
+          </div>
+        </div>
         <hr class="mt-10 mb-10" />
 
         <!-- grid container -->
@@ -315,6 +323,15 @@ export default {
       let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/${this.id}`;
       axios.put(apiURL, this.event).then(() => {
         alert("Update has been saved.");
+        this.$router.back().catch((error) => {
+          console.log(error);
+        });
+      });
+    },
+    handleEventDelete() {
+      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/deleteevent/${this.id}`;
+      axios.delete(apiURL, this.event).then(() => {
+        alert("Event has been deleted.");
         this.$router.back().catch((error) => {
           console.log(error);
         });

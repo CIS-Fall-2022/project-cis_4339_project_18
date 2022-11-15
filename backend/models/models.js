@@ -41,8 +41,10 @@ let primaryDataSchema = new Schema({
             type: String,
         }
     },
-    orgName: {
-        type: String
+    org_id: {
+        type: String,
+        requierd:true,
+        default: process.env.ORG
     }
 }, {
     collection: 'primaryData',
@@ -65,7 +67,8 @@ let eventDataSchema = new Schema({
     },
     address: {
         line1: {
-            type: String
+            type: String,
+            required: true
         },
         line2: {
             type: String,
@@ -83,52 +86,21 @@ let eventDataSchema = new Schema({
     description: {
         type: String,
     },
-    attendees: [{
-        type: String
-    }],
-    orgName: {
-        type: String
+    attendees: {
+        type: Array,
+        required: true
+    },
+    org_id: {
+        type: String,
+        requierd:true,
+        default: process.env.ORG
     }
 }, {
     collection: 'eventData'
 });
-
-// health collection information 
-
-//contact collection information
-
-// Logs Collection
-    let logSchema = new Schema({
-        _id: {
-            type: String,
-            default: uuid.v1
-        },
-        clientID: {
-            type: Number,
-            required: true
-        },
-        serviceID: {
-            type: Number,
-            required: true
-        },
-        accessDate: {
-            type: Date,
-            required: true
-        },
-      accessTime:{
-         type: String,
-         required: true
-        }  
-    },
-        {
-            collection: 'logs'
-        });
-
 // Organizations Collection
     let orgDataSchema = new Schema({
-        _id: { 
-            type: String, 
-            default: uuid.v1 
+        _id: {type: String, default: uuid.v1 
         },
         orgName: {
             type: String
