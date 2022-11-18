@@ -98,47 +98,18 @@ let eventDataSchema = new Schema({
 }, {
     collection: 'eventData'
 });
+
 // Organizations Collection
-    let orgDataSchema = new Schema({
-        _id: {type: String, default: uuid.v1 
-        },
-        orgName: {
-            type: String
-        },
-        eventID: {
-            type: Number,
-            required: true
-        },
-        org_desc: {
-            type: String
-        },
-        phoneNumbers: {
-            type: Array,
-            required: true
-        },
-        email: {
-            type: String
-        },
-        org_address: {
-            line1: {
-                type: String
-            },
-            line2: {
-                type: String
-            },
-            city: {
-                type: String
-            },
-            county: {
-                type: String
-            },
-            zip: {
-                type: Number
-            }
-        }
-    }, {
-        collection: 'orgData'
-    });
+let orgDataSchema = new Schema({
+    _id: {type: String, default: uuid.v1 
+    },
+    orgName: {
+        type: String,
+        required:true
+    },
+}, {
+    collection: 'orgData'
+});
 
     // Collection for error logs
     let logSchema = new Schema({
