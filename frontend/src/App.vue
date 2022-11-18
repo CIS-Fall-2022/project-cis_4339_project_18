@@ -46,6 +46,7 @@
         class="justify-end items-center h-24 flex"
         style="background: linear-gradient(250deg, #C8102E 70%, #efecec 50.6%);"
       >
+      <!-- shows correct org name with api call  -->
         <h1 class="mr-20 text-3xl text-white">{{queryData.orgName}}</h1>
       </section>
       <div>
@@ -71,7 +72,8 @@ export default {
       queryData: []
     }
   },
-  mounted() {
+  // API call to get org name from .env file in backend
+  async mounted() {
     let apiURL = import.meta.env.VITE_ROOT_API + `/orgdata/orgname/`;
     axios.get(apiURL).then((resp) => {
       this.queryData = resp.data;

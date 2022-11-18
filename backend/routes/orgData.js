@@ -16,7 +16,7 @@ router.get("/", (req, res, next) => {
     })
 });
 
-//Gets org anem with id in .env file
+//Gets org name with id in .env file
 router.get("/orgName", (req, res, next) => { 
     orgdata.findOne({_id : process.env.ORG}, 
         {orgName:1},
