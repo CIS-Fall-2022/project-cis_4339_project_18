@@ -111,30 +111,11 @@ let orgDataSchema = new Schema({
     collection: 'orgData'
 });
 
-    // Collection for error logs
-    let logSchema = new Schema({
-        _id: {type: String, default: uuid.v1 
-        },
-        orgName: {
-            type: String
-        },
-        eventID: {
-            type: Number,
-            required: true
-        },
-        accessDate: {
-            type: Date,
-            required: true
-        } 
-    }, {
-        collection: 'logs'
-    });
-
 // create models from mongoose schemas
 const primarydata = mongoose.model('primaryData', primaryDataSchema);
 const eventdata = mongoose.model('eventData', eventDataSchema);
 const orgdata = mongoose.model('orgData', orgDataSchema);
-const logs = mongoose.model('logs', logSchema);
+
 
 // package the models in an object to export 
-module.exports = { primarydata, eventdata, logs, orgdata}
+module.exports = { primarydata, eventdata, orgdata}
